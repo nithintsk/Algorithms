@@ -1,0 +1,5 @@
+# Unignore all dirs
+!*/
+
+# Ignore files with extension `exe`
+*.exe
