@@ -13,6 +13,7 @@ int main() {
 }
 
 int binary_search_r (int *arr, int l, int r, int x) {
+	if (l>r) return -1;
 	int mid = l + (r-l)/2;
 	// Added ===========> && (mid==0 || arr[mid-1] !=x)
 	if (arr[mid] == x && (mid==0 || arr[mid-1] !=x)) {
