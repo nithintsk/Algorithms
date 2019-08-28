@@ -37,25 +37,30 @@ public:
     
     // Method 2 - Using Hash maps where searching is O(1)
 	// Time Complexity - O(n) && Space Complexity O(n)
-    vector<int> twoSum(vector<int>& nums, int target) {
+ 	vector<int> twoSum(vector<int>& nums, int target) {
         
         vector <int> result;
+        // Declare a hashmap to store values that have been read
         map<int,int> array_map;
         for (auto it = nums.begin(); it!=nums.end(); it++)
         {
-        	array_map[*it] = it - nums.begin();
+            // Obtain the complement to be searched for
+            int difference = target - *it;
+            // Find if the complement already exists
+            map<int,int>::iterator itr = array_map.find(difference);
+            // If it doesn't, insert it into the map
+            if (itr == array_map.end()) 
+            {
+                array_map[*it] = it - nums.begin();
+            } 
+            // If it does exists, return the values
+            else 
+            {
+                result.push_back(itr -> second);
+                result.push_back(it - nums.begin());
+                return result;
+            }
         }
-        map<int, int>::iterator it;
-        for (it = array_map.begin(); it != array_map.end(); it++)
-        {
-        	int difference = target - it->first;
-        	map<int,int>::iterator itr = array_map.find(difference);
-        	if (itr != it) {
-        		result.push_back(it->second);
-                result.push_back(itr->second);
-        		return result;
-			}
-		}
         return result;
     }
     
